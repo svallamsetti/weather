@@ -17,14 +17,19 @@ Once docker and docker compose are installed follow the below steps to spin this
 1. clone the repo `git clone git@github.com:svallamsetti/weather.git`
 2. `cd weather`
 3. create `.env` file under project root directory   
-4. copy contents from `.env.example` to `.env` file
-5. Run `./vendor/bin/sail artisan key:generate`
-6. copy the API key sent in email and paste it in `.env` file for the key `API_KEY=`
-7. Run `./vendor/bin/sail composer install`
-> This step may take some time to install dependencies
-8. Run `./vendor/bin/sail up -d`
-9. The application can be accessed at [Weather](http://127.0.0.1:8888/weather)
-10. This app runs on `8888` port, in case if that port is occupied change the port in `.env` file for key `APP_PORT`
+4. copy contents from `.env.example` to `.env` file `cp .env.example .env`
+5. Run composer install `docker run --rm --interactive --tty \
+   --volume $PWD:/app \
+   composer install`
+    > This step may take some time to install dependencies
+
+6. Run `./vendor/bin/sail up -d`
+7. Run `./vendor/bin/sail artisan key:generate`
+8. Run `touch database/SearchHistory.sqlite`
+9. Run `touch database/testing.sqlite`   
+10. copy the API key sent in email and paste it in `.env` file for the key `API_KEY=`
+11. The application can be accessed at [Weather](http://127.0.0.1:8888/weather)
+12. This app runs on `8888` port, in case if that port is occupied change the port in `.env` file for key `APP_PORT`
 
 ## Running Tests
 
@@ -58,3 +63,7 @@ Once docker and docker compose are installed follow the below steps to spin this
   Time:   5.95s
 
 ```
+
+## Shutting Down
+
+1. Run `./vendor/bin/sail down`
