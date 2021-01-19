@@ -26,14 +26,15 @@ Once docker and docker compose are installed follow the below steps to spin this
 6. Run `./vendor/bin/sail up -d`
 7. Run `./vendor/bin/sail artisan key:generate`
 8. Run `touch database/SearchHistory.sqlite`
-9. Run `touch database/testing.sqlite`   
+9. Run `./vendor/bin/sail artisan migrate`   
 10. copy the API key sent in email and paste it in `.env` file for the key `API_KEY=`
 11. The application can be accessed at [Weather](http://127.0.0.1:8888/weather)
 12. This app runs on `8888` port, in case if that port is occupied change the port in `.env` file for key `APP_PORT`
 
 ## Running Tests
 
-1. Run `./vendor/bin/sail test`
+1. Run `touch database/testing.sqlite`
+2. Run `./vendor/bin/sail test`
 ```
  Dinesh@Sais-Air > ~/um/weather > ./vendor/bin/sail test
 
