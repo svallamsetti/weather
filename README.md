@@ -18,9 +18,7 @@ Once docker and docker compose are installed follow the below steps to spin this
 2. `cd weather`
 3. create `.env` file under project root directory   
 4. copy contents from `.env.example` to `.env` file `cp .env.example .env`
-5. Run composer install `docker run --rm --interactive --tty \
-   --volume $PWD:/app \
-   composer install`
+5. Run composer install `docker run --rm -it -v $PWD:/app composer install`
     > This step may take some time to install dependencies
 
 6. Run `./vendor/bin/sail up -d`
