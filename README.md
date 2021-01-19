@@ -84,4 +84,4 @@ Once docker and docker compose are installed, follow the below steps to spin thi
 
 **Running Tests**
 1. Create a file under database directory `testing.sqlite`
-2. Run `./vendor/bin/phpunit` for Mac OS and `.\vendor\bin\phpunit` for Windows
+2. Run `./vendor/bin/phpunit` or `./vendor/bin/phpunit tests` for Mac OS and `.\vendor\bin\phpunit` for Windows
