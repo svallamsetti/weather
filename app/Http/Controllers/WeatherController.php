@@ -4,10 +4,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Exceptions\WeatherAPIException;
-use App\Models\SearchHistory;
 use App\WeatherRepository\WeatherMapper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class WeatherController extends Controller
 {

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\WeatherRepository;
 
 use App\Helpers\APIResponseHelper;
-use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 class WeatherRESTImplementation implements WeatherContract{

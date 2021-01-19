@@ -4,9 +4,7 @@ declare(strict_types=1);
 namespace App\Domain\Weather;
 
 
-use App\WeatherRepository\WeatherMapper;
-
-final class WeatherByZipCode
+class WeatherByZipCode
 {
     /**
      * @var string
@@ -42,6 +40,13 @@ final class WeatherByZipCode
         $this->zipCode = $zipCode;
     }
 
+    /**
+     * @param string $zipCode
+     * @param string $temperature
+     * @param string $dayTime
+     * @param string $location
+     * @return static
+     */
     public static function make(string $zipCode, string $temperature, string $dayTime, string $location): self
     {
         return new WeatherByZipCode($zipCode, $temperature, $dayTime, $location);
