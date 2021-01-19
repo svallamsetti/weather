@@ -2,54 +2,59 @@
 
 ## About Weather App
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Weather app is a web application that retrieves weather information using zip code. The app displays weather in Fahrenheit and also displays other information such as zip code, city name and Day&Time in EST.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirements
+To run this app docker and docker-compose should be installed on your local workstation.
+* [Docker](https://docs.docker.com/get-docker/)
+* [Docker Compose](https://docs.docker.com/compose/install/)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Project setup
+Once docker and docker compose are installed follow the below steps to spin this app.
 
-## Learning Laravel
+**Steps:**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. clone the repo `git clone git@github.com:svallamsetti/weather.git`
+2. `cd weather`
+3. create `.env` file under project root directory   
+4. copy contents from `.env.example` to `.env` file
+5. Run `./vendor/bin/sail artisan key:generate`
+6. copy the API key sent in email and paste it in `.env` file for the key `API_KEY=`
+7. Run `./vendor/bin/sail composer install`
+> This step may take some time to install dependencies
+8. Run `./vendor/bin/sail up -d`
+9. The application can be accessed at [Weather](http://127.0.0.1:8888/weather)
+10. This app runs on `8888` port, in case if that port is occupied change the port in `.env` file for key `APP_PORT`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Running Tests
 
-## Laravel Sponsors
+1. Run `./vendor/bin/sail test`
+```
+ Dinesh@Sais-Air > ~/um/weather > ./vendor/bin/sail test
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+   PASS  Tests\Unit\Weather\WeatherByZipCodeTest
+  ✓ can create weather by zip code object
 
-### Premium Partners
+   PASS  Tests\Unit\Weather\WeatherMapperTest
+  ✓ can send weather a p i response
+  ✓ weather a p i exception can be thrown
+  ✓ can create valid history record
+  ✓ can create invalid search history record
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+   PASS  Tests\Unit\Weather\WeatherRESTImplementationTest
+  ✓ can retrieve weather by zip code
 
-## Contributing
+   PASS  Tests\Unit\searchHistory\SearchHistoryEloquentTest
+  ✓ can create search history
+  ✓ can retrieve search history records in desc order
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   PASS  Tests\Feature\weather\WeatherByZipCodeTest
+  ✓ can see weather view
+  ✓ can get weather by zip code
+  ✓ validation works
+  ✓ exception works
 
-## Code of Conduct
+  Tests:  12 passed
+  Time:   5.95s
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
