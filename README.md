@@ -5,11 +5,11 @@
 Weather app is a web application that retrieves weather information using zip code. The app displays weather in Fahrenheit and also displays other information such as zip code, city name and Day&Time in EST.
 
 ## Requirements
-To run this app, docker and docker-compose should be installed on your local workstation. The following instructions will work on Mac OS with docker installed and should work on Windows (via WSL2).
+To run this app, docker and docker-compose should be installed on your local workstation. The following instructions will work on Mac OS with docker installed and should also work on Windows (via WSL2).
 * [Docker](https://docs.docker.com/get-docker/)
   
 To run this app without docker we need PHP 7.3 or more installed on the local computer and need composer installed globally.
-Once they are installed locally on the workstation, please skip to the Section #Without Docker
+Once they are installed on the workstation, please skip to the Section #Without Docker
 
 ## Project setup
 Once docker and docker compose are installed, follow the below steps to spin this app.
@@ -20,15 +20,14 @@ Once docker and docker compose are installed, follow the below steps to spin thi
 2. `cd weather`
 3. copy contents from `.env.example` to `.env` file `cp .env.example .env`
 4. Run composer install `docker run --rm -it -v $PWD:/app composer install`
-    > Step 4 & 5 will take some time to complete. 
-
+    > Step 4 & 5 will take some time to complete.
 5. Run `./vendor/bin/sail up -d`
 6. Run `./vendor/bin/sail artisan key:generate`
 7. Run `touch database/SearchHistory.sqlite`
 8. Run `./vendor/bin/sail artisan migrate`   
 9. copy the API key sent in email and paste it in `.env` file for the key `API_KEY=`
 10. The application can be accessed at [Weather](http://127.0.0.1:8888/weather)
-11. This app runs on `8888` port, in case if that port is occupied change the port in `.env` file for key `APP_PORT`
+11. This app runs on `8888` port, in case if that port is occupied change the port in `.env` file for key `APP_PORT` and run `./vendor/bin/sail down` & `./vendor/bin/sail up -d`
 
 ## Running Tests
 
@@ -81,8 +80,8 @@ Once docker and docker compose are installed, follow the below steps to spin thi
 7. Run `php artisan migrate`
 8. copy the API key sent in email and paste it in `.env` file for the key `API_KEY=`
 9. Run `php artisan serve`   
-10. The application can be accessed at a url that will be shown when we run the above command 
+10. The application can be accessed at a url [Weather](http://127.0.0.1:8000/weather)
 
 **Running Tests**
 1. Create a file under database directory `testing.sqlite`
-2. `cd vendor/bin` && Run `phpunit`
+2. Run `./vendor/bin/phpunit` for Mac OS and `.\vendor\bin\phpunit` for Windows
